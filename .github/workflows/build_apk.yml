@@ -23,8 +23,10 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Create Android project files
-        run: flutter create --platforms=android .
+      - name: Generate Android platform folder (isolated, does not touch lib/)
+        run: |
+          flutter create --platforms=android --org com.example --project-name daily_task_app /tmp/scaffold
+          cp -r /tmp/scaffold/android ./android
 
       - name: Install dependencies
         run: flutter pub get
